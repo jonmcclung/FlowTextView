@@ -8,12 +8,14 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.text.Editable;
 import android.text.Spannable;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -444,6 +446,23 @@ public class FlowTextView extends RelativeLayout {
     public void setPageHeight(int pageHeight) {
         this.pageHeight = pageHeight;
         invalidate();
+    }
+
+    /** Convenience method: Append the specified text to the TextView's display buffer, upgrading it to BufferType.EDITABLE if it was not already editable.
+     *
+     */
+            
+    public final void append(CharSequence text) {
+        append(text, 0, text.length());
+    }
+
+
+    /** Convenience method: Append the specified text slice to the TextView's display buffer, upgrading it to BufferType.EDITABLE if it was not already editable.
+     *
+     */
+            
+    public void append(CharSequence text, int start, int end) {
+        ((Editable) mText).append(text, start, end);
     }
 
 }
